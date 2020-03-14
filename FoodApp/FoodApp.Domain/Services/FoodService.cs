@@ -22,7 +22,7 @@ namespace FoodApp.Domain.Services
             this.logger = logger;
         }
 
-        public async Task<List<FoodCategory>> GetFoodCategoriesForRestaurant(Guid restaurantId)
+        public async Task<List<FoodCategory>> GetFoodCategoriesForRestaurantAsync(Guid restaurantId)
         {
             var foodCategoryIds = await foodAppDbContext.RestaurantFoodCategoryMaps.Where(x => x.RestaurantId == restaurantId)?.Select(x=>x.FoodCategoryId).ToListAsync();
             var foodCategoryList = await foodAppDbContext.FoodCategories.Where(x => foodCategoryIds.Any(f => f == x.Id)).ToListAsync();

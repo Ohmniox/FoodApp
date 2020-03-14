@@ -8,6 +8,6 @@ namespace FoodApp.Core.Services.Contracts
 {
     public interface IFoodService : IService
     {
-        public Task<List<FoodCategory>> GetFoodCategoriesForRestaurant(Guid restaurantId);
+        public Task<List<FoodCategory>> GetFoodCategoriesForRestaurantAsync(Guid restaurantId);
     }
 }

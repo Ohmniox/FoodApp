@@ -26,7 +26,7 @@ namespace FoodApp.API.Controllers
         [HttpGet("food-categories")]
         public async Task<IActionResult> GetFoodCategoriesForRestaurant([FromQuery]Guid restaurantId)
         {
-            var foodCategoryList = await foodService.GetFoodCategoriesForRestaurant(restaurantId);
+            var foodCategoryList = await foodService.GetFoodCategoriesForRestaurantAsync(restaurantId);
             return this.Ok(foodCategoryList);
         }
     }
