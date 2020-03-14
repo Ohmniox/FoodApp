@@ -1,6 +1,10 @@
 ﻿using FoodApp.Core.Services.Contracts;
 using FoodApp.Data;
+using FoodApp.Domain.Mapper;
 using FoodApp.Entities;
+using FoodApp.Library.Enum;
+using FoodApp.Library.Security;
+using FoodApp.Models.Request;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -24,6 +28,16 @@ namespace FoodApp.Domain.Services
         public Task<User> GetUser(string email)
         {
             return foodAppDbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
+        }
+
+        public async Task CreateConsumerUser(UserRequestModel userRequestModel)
+        {
+            var user = UserMapper.Map(userRequestModel);
+            user.Id = Guid.NewGuid();
+            user.PasswordHash = Helper.HashPassword(userRequestModel.Password);
+            user.UserType = (int)UserType.Consumer;
+            await foodAppDbContext.AddAsync(user);
+            await foodAppDbContext.SaveChangesAsync();
         }
     }
 }

@@ -53,6 +53,20 @@ namespace FoodApp.API.Controllers
             return this.Ok(new AcquireTokenResponseModel { Token = authToken });
         }
 
+        [AllowAnonymous]
+        [HttpPost("sign-up")]
+        public async Task<IActionResult> SignUp([FromBody]UserRequestModel userRequestModel)
+        {
+            var user = await userService.GetUser(userRequestModel.Email);
+            if (user != null)
+            {
+                return BadRequest(new BadRequestResponseModel { ErrorMessage = "User already exist with the given email id" });
+            }
+
+            await this.userService.CreateConsumerUser(userRequestModel);
+            return this.Accepted();
+        }
+
         private string GenerateAuthenticationToken(string email, Guid userID, int userType)
         {
             var signingKeyByteArray = Encoding.Default.GetBytes(settings.SigningKey);
