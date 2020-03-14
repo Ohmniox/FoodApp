@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FoodApp.Entities
 {
-    public class FoodCustomizationOption
+    public class FoodCustomizationOption : Entity
     {
         public Guid Id { get; set; }
         public Guid FoodCustomizationId { get; set; }
