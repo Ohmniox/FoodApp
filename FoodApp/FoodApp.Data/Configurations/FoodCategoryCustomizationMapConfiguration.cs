@@ -11,6 +11,7 @@ namespace FoodApp.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<FoodCategoryCustomizationMap> modelBuilder)
         {
+            modelBuilder.ToTable("FoodCategoryCustomization");
             modelBuilder.Property(p => p.FoodCategoryId).IsRequired();
             modelBuilder.Property(p => p.FoodCustomizationId).IsRequired();
             modelBuilder.HasKey(k => new { k.FoodCategoryId, k.FoodCustomizationId });

@@ -11,6 +11,7 @@ namespace FoodApp.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<FoodCustomization> modelBuilder)
         {
+            modelBuilder.ToTable("FoodCustomization");
             modelBuilder.HasKey(k => k.Id);
             modelBuilder.Property(p => p.Name).IsRequired().HasMaxLength(200);
             modelBuilder.Property(p => p.CanSelectMultipleOptions).IsRequired();
