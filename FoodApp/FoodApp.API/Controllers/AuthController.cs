@@ -13,6 +13,7 @@ using FoodApp.Library.Security;
 using FoodApp.Models.Config;
 using FoodApp.Models.Request;
 using FoodApp.Models.Response;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -33,6 +34,7 @@ namespace FoodApp.API.Controllers
             this.settings = settings;
         }
 
+        [AllowAnonymous]
         [HttpPost("acquire-token")]
         public async Task<IActionResult> AcquireToken([FromBody] AcquireTokenRequestModel acquireTokenRequestModel)
         {

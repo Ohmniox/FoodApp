@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FoodApp.API.Controllers.Shared;
+using FoodApp.API.Filters;
 using FoodApp.Core.Services.Contracts;
+using FoodApp.Library.Enum;
 using FoodApp.Models.Request;
 using FoodApp.Models.Response;
 using Microsoft.AspNetCore.Http;
@@ -14,6 +16,7 @@ namespace FoodApp.API.Controllers.Admin
 {
     [Route("api/admin/[controller]")]
     [ApiController]
+    [FoodApAuthorize((int)UserType.Admin)]
     public class FoodController : FoodAppBaseController
     {
         private readonly IFoodService foodService;
