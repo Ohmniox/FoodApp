@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Data", "FoodApp.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Entities", "FoodApp.Entities\FoodApp.Entities.csproj", "{61181A4B-5F28-4C1E-BC6E-2545B86887DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Domain", "FoodApp.Domain\FoodApp.Domain.csproj", "{32AD8520-83F1-41EB-920A-8BB14F3D5556}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Core", "FoodApp.Core\FoodApp.Core.csproj", "{44A7491C-9726-4CB7-8515-5DCBCBE05953}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{61181A4B-5F28-4C1E-BC6E-2545B86887DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61181A4B-5F28-4C1E-BC6E-2545B86887DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61181A4B-5F28-4C1E-BC6E-2545B86887DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32AD8520-83F1-41EB-920A-8BB14F3D5556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32AD8520-83F1-41EB-920A-8BB14F3D5556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32AD8520-83F1-41EB-920A-8BB14F3D5556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32AD8520-83F1-41EB-920A-8BB14F3D5556}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44A7491C-9726-4CB7-8515-5DCBCBE05953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44A7491C-9726-4CB7-8515-5DCBCBE05953}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44A7491C-9726-4CB7-8515-5DCBCBE05953}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44A7491C-9726-4CB7-8515-5DCBCBE05953}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
