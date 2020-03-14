@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FoodApp.Entities\FoodApp.Entities.csproj" />
+    <ProjectReference Include="..\FoodApp.Models\FoodApp.Models.csproj" />
   </ItemGroup>
 
 </Project>

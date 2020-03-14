@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.API", "FoodApp.API\FoodApp.API.csproj", "{47D29244-FC44-416F-A7D0-840D32FFA3B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodApp.API", "FoodApp.API\FoodApp.API.csproj", "{47D29244-FC44-416F-A7D0-840D32FFA3B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Data", "FoodApp.Data\FoodApp.Data.csproj", "{D7095B3F-4326-452B-8905-115BFE005433}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodApp.Data", "FoodApp.Data\FoodApp.Data.csproj", "{D7095B3F-4326-452B-8905-115BFE005433}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Entities", "FoodApp.Entities\FoodApp.Entities.csproj", "{61181A4B-5F28-4C1E-BC6E-2545B86887DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodApp.Entities", "FoodApp.Entities\FoodApp.Entities.csproj", "{61181A4B-5F28-4C1E-BC6E-2545B86887DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Domain", "FoodApp.Domain\FoodApp.Domain.csproj", "{32AD8520-83F1-41EB-920A-8BB14F3D5556}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodApp.Domain", "FoodApp.Domain\FoodApp.Domain.csproj", "{32AD8520-83F1-41EB-920A-8BB14F3D5556}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Core", "FoodApp.Core\FoodApp.Core.csproj", "{44A7491C-9726-4CB7-8515-5DCBCBE05953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodApp.Core", "FoodApp.Core\FoodApp.Core.csproj", "{44A7491C-9726-4CB7-8515-5DCBCBE05953}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Models", "FoodApp.Models\FoodApp.Models.csproj", "{5C318136-0ADC-408A-8070-ACC4265B54FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{44A7491C-9726-4CB7-8515-5DCBCBE05953}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44A7491C-9726-4CB7-8515-5DCBCBE05953}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44A7491C-9726-4CB7-8515-5DCBCBE05953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C318136-0ADC-408A-8070-ACC4265B54FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C318136-0ADC-408A-8070-ACC4265B54FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C318136-0ADC-408A-8070-ACC4265B54FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C318136-0ADC-408A-8070-ACC4265B54FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

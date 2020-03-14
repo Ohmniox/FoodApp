@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FoodApp.Core\FoodApp.Core.csproj" />
     <ProjectReference Include="..\FoodApp.Data\FoodApp.Data.csproj" />
+    <ProjectReference Include="..\FoodApp.Models\FoodApp.Models.csproj" />
   </ItemGroup>
 
 </Project>
