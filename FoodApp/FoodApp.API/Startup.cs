@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using FoodApp.Core.Services.Contracts;
 using FoodApp.Data;
+using FoodApp.Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,7 +39,9 @@ namespace FoodApp.API
             
             var connectionString = Configuration.GetConnectionString("FoodAppDBConnectionString");
             services.AddDbContext<FoodAppDbContext>(item => item.UseSqlServer(connectionString));
-            
+
+            services.AddScoped<IRestaurantService, RestaurantService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Food App API", Version = "v1" });
