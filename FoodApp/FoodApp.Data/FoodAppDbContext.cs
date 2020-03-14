@@ -1,5 +1,7 @@
 ﻿using FoodApp.Data.Configurations;
 using FoodApp.Entities;
+using FoodApp.Library.Enum;
+using FoodApp.Library.Security;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -121,6 +123,9 @@ namespace FoodApp.Data
                 new FoodCustomizationOption { Id = Guid.NewGuid(), FoodCustomizationId = fCmzBread.Id, Name = "Oat", UnitPrice = 10 },
             };
             modelBuilder.Entity<FoodCustomizationOption>().HasData(fCmzOptions);
+
+            var user = new User {Id = Guid.NewGuid(), Email = "admin@foodapp.com", PasswordHash = Helper.HashPassword("123"), FirstName = "Admin", LastName = "Admin",UserType = (int)UserType.Admin};
+            modelBuilder.Entity<User>().HasData(user);
         }
     }
 }

@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FoodApp.Entities\FoodApp.Entities.csproj" />
+    <ProjectReference Include="..\FoodApp.Library\FoodApp.Library.csproj" />
   </ItemGroup>
 
 </Project>
