@@ -12,6 +12,14 @@ namespace FoodApp.Data
         {
         }
 
+        public virtual DbSet<Food> Foods { get; set; }
+        public virtual DbSet<FoodCategory> FoodCategories { get; set; }
+        public virtual DbSet<FoodCategoryCustomizationMap> FoodCategoryCustomizationMaps { get; set; }
+        public virtual DbSet<FoodCustomization> FoodCustomizations { get; set; }
+        public virtual DbSet<FoodCustomizationOption> FoodCustomizationOptions { get; set; }
+        public virtual DbSet<Restaurant> Restaurants { get; set; }
+        public virtual DbSet<RestaurantFoodCategoryMap> RestaurantFoodCategoryMaps { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             ModelConfiguration(modelBuilder);
