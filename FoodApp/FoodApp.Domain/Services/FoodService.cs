@@ -88,15 +88,19 @@ namespace FoodApp.Domain.Services
             var food = await foodAppDbContext.Foods.AsNoTracking()
                         .Include(x => x.FoodCategory)
                         .FirstOrDefaultAsync(x => x.Id == foodId);
-            var foodResponseModel = new FoodResponseModel
+            if (food != null)
             {
-                Id = food.Id,
-                FoodCategoryId = food.FoodCategory.Id,
-                FoodCategoryName = food.FoodCategory.Name,
-                Name = food.Name,
-                UnitPrice = food.UnitPrice
-            };
-            return foodResponseModel;
+                var foodResponseModel = new FoodResponseModel
+                {
+                    Id = food.Id,
+                    FoodCategoryId = food.FoodCategory.Id,
+                    FoodCategoryName = food.FoodCategory.Name,
+                    Name = food.Name,
+                    UnitPrice = food.UnitPrice
+                };
+                return foodResponseModel;
+            }
+            return null;
         }
 
         public async Task<Guid> CreateFoodAsync(FoodRequestModel foodRequestModel)

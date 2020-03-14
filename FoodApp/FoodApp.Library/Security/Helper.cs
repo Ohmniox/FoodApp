@@ -11,9 +11,9 @@ namespace FoodApp.Library.Security
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
 
-        public static bool VerifyPassword(string password, string hashedPassword)
+        public static bool VerifyPassword(string password, string passwordHash)
         {
-            return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
+            return BCrypt.Net.BCrypt.Verify(password, passwordHash);
         }
     }
 }
