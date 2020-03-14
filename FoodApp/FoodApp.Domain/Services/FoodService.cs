@@ -28,5 +28,10 @@ namespace FoodApp.Domain.Services
             var foodCategoryList = await foodAppDbContext.FoodCategories.Where(x => foodCategoryIds.Any(f => f == x.Id)).ToListAsync();
             return foodCategoryList;
         }
+
+        public Task<List<Food>> GetFoodsByFoodCategoryIdAsync(Guid foodCategoryId)
+        {
+            return foodAppDbContext.Foods.Where(x => x.FoodCategoryId == foodCategoryId).ToListAsync();
+        }
     }
 }
