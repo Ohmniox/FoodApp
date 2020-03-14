@@ -4,12 +4,12 @@ using System.Text;
 
 namespace FoodApp.Models.Response
 {
-    public class FoodResponseModel
+    public class FoodDetailResponseModel
     {
         public Guid Id { get; set; }
         public Guid FoodCategoryId { get; set; }
-        public string FoodCategoryName { get; set; }
         public string Name { get; set; }
         public decimal UnitPrice { get; set; }
+        public List<FoodCustomizationResponseModel> FoodCustomizations { get; set; }
     }
 }
