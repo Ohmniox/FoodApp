@@ -36,12 +36,12 @@ namespace FoodApp.API
                 options.JsonSerializerOptions.IgnoreNullValues = true;
                 options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             });
-            
+
             var connectionString = Configuration.GetConnectionString("FoodAppDBConnectionString");
             services.AddDbContext<FoodAppDbContext>(item => item.UseSqlServer(connectionString));
 
             services.AddScoped<IRestaurantService, RestaurantService>();
-
+            services.AddScoped<IFoodService, FoodService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Food App API", Version = "v1" });
@@ -58,13 +58,13 @@ namespace FoodApp.API
 
             app.UseHttpsRedirection();
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Food App API");
             });
-            
+
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
