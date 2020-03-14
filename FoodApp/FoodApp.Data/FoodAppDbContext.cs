@@ -19,6 +19,7 @@ namespace FoodApp.Data
         public virtual DbSet<FoodCustomizationOption> FoodCustomizationOptions { get; set; }
         public virtual DbSet<Restaurant> Restaurants { get; set; }
         public virtual DbSet<RestaurantFoodCategoryMap> RestaurantFoodCategoryMaps { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,6 +36,7 @@ namespace FoodApp.Data
             modelBuilder.ApplyConfiguration(new FoodCustomizationOptionConfiguration());
             modelBuilder.ApplyConfiguration(new RestaurantConfiguration());
             modelBuilder.ApplyConfiguration(new RestaurantFoodCategoryMapConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
 
         private void SeedData(ModelBuilder modelBuilder)
