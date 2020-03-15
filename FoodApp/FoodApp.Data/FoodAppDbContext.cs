@@ -131,8 +131,9 @@ namespace FoodApp.Data
                 new FoodCustomizationOption { Id = new Guid("{763D6AE6-6BB6-43FB-B7EF-A16B3BA6BF29}"), FoodCustomizationId = fCmzBread.Id, Name = "Oat", UnitPrice = 10 },
             };
             modelBuilder.Entity<FoodCustomizationOption>().HasData(fCmzOptions);
-
-            var user = new User { Id = new Guid("{6CBCA69D-E9A1-4896-A1B3-35205F86A3B0}"), Email = "admin@foodapp.com", PasswordHash = Helper.HashPassword("123"), FirstName = "Admin", LastName = "Admin", UserType = (int)UserType.Admin };
+            
+            //Password = "123"
+            var user = new User { Id = new Guid("{6CBCA69D-E9A1-4896-A1B3-35205F86A3B0}"), Email = "admin@foodapp.com", PasswordHash = "$2a$11$gkBFRKDn7v8xUicttBIfkOZ/NinK7NdB9Zl.Xd0bfh9laaXO4bhP6", FirstName = "Admin", LastName = "Admin", UserType = (int)UserType.Admin };
             modelBuilder.Entity<User>().HasData(user);
         }
     }
