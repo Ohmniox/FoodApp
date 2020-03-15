@@ -16,6 +16,7 @@ using FoodApp.Models.Response;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -27,29 +28,34 @@ namespace FoodApp.API.Controllers
     {
         private readonly IUserService userService;
         private readonly ConfigSettings settings;
+        private readonly ILogger<AuthController> logger;
 
-        public AuthController(IUserService userService, ConfigSettings settings)
+        public AuthController(IUserService userService, ConfigSettings settings, ILogger<AuthController> logger)
         {
             this.userService = userService;
             this.settings = settings;
+            this.logger = logger;
         }
 
         [AllowAnonymous]
         [HttpPost("acquire-token")]
         public async Task<IActionResult> AcquireToken([FromBody] AcquireTokenRequestModel acquireTokenRequestModel)
         {
+            logger.LogInformation("Acquire Token request started");
             var user = await userService.GetUser(acquireTokenRequestModel.Email);
             if (user == null)
             {
+                logger.LogInformation("User not found");
                 return BadRequest(new BadRequestResponseModel { ErrorMessage = "Email or Password invalid" });
             }
-            var checkPassword = Helper.VerifyPassword(acquireTokenRequestModel.Password, user.PasswordHash);
+            var checkPassword = Helper.VerifyPassword(acquireTokenRequestModel.Password.ToString(), user.PasswordHash);
             if (!checkPassword)
             {
+                logger.LogInformation("Password is incorrect");
                 return BadRequest(new BadRequestResponseModel { ErrorMessage = "Email or Password invalid" });
             }
             var authToken = GenerateAuthenticationToken(user.Email, user.Id, user.UserType);
-
+            logger.LogInformation("Acquire Token request successfully completed");
             return this.Ok(new AcquireTokenResponseModel { Token = authToken });
         }
 
@@ -57,12 +63,15 @@ namespace FoodApp.API.Controllers
         [HttpPost("sign-up")]
         public async Task<IActionResult> SignUp([FromBody]UserRequestModel userRequestModel)
         {
+            logger.LogInformation("SignUp request started");
             var user = await userService.GetUser(userRequestModel.Email);
             if (user != null)
             {
+                logger.LogInformation($"User already exist with the email : {userRequestModel.Email}");
                 return BadRequest(new BadRequestResponseModel { ErrorMessage = "User already exist with the given email id" });
             }
 
+            logger.LogInformation("Sign up request completed successfully");
             await this.userService.CreateConsumerUser(userRequestModel);
             return this.Accepted();
         }

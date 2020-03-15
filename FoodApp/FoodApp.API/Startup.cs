@@ -83,6 +83,12 @@ namespace FoodApp.API
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IOrderService, OrderService>();
 
+            services.AddLogging((options) =>
+            {
+                options.AddConsole();
+                options.AddDebug();
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Food App API", Version = "v1" });
@@ -103,7 +109,7 @@ namespace FoodApp.API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Food App API");
             });
-            
+
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
