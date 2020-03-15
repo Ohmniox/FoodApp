@@ -103,10 +103,10 @@ namespace FoodApp.Domain.Services
             return (null, orderId);
         }
 
-        public async Task<OrderResponseModel> GetOrder(Guid orderId)
+        public async Task<OrderDetailResponseModel> GetOrder(Guid orderId, Guid userId)
         {
-            var order = await this.foodAppDbContext.Orders.AsNoTracking()
-                                    .FirstOrDefaultAsync(x => x.Id == orderId);
+            var order = await this.foodAppDbContext.Orders.AsNoTracking().Include(x => x.Restaurant)
+                                    .FirstOrDefaultAsync(x => x.Id == orderId && x.UserId == userId);
             if (order == null)
             {
                 return null;
@@ -114,16 +114,16 @@ namespace FoodApp.Domain.Services
 
             var orderLines = await this.foodAppDbContext.OrderLines.AsNoTracking().Include(c => c.OrderLineOptions)
                                     .Where(x => x.OrderId == orderId).ToListAsync();
-            var restaurant = await this.foodAppDbContext.Restaurants.AsNoTracking()
-                                    .FirstOrDefaultAsync(x => x.Id == order.RestaurantId);
 
-            var orderResponseModel = new OrderResponseModel
+            var orderResponseModel = new OrderDetailResponseModel
             {
-                RestaurantId = order.RestaurantId,
-                RestaurantName = restaurant.Name,
+                OrderId = order.Id,
+                RestaurantId = order.Restaurant.Id,
+                RestaurantName = order.Restaurant.Name,
                 TotalAmount = order.TotalAmount
             };
-            var orderLineResponseModels = new List<OrderResponseModel.OrderLineResponseModel>();
+
+            var orderLineResponseModels = new List<OrderDetailResponseModel.OrderLineResponseModel>();
 
             if (orderLines != null)
             {
@@ -144,11 +144,11 @@ namespace FoodApp.Domain.Services
                                                     .ToListAsync();
                 foreach (var orderLine in orderLines)
                 {
-                    var orderLineOptionResponseModels = new List<OrderResponseModel.OrderLineResponseModel.OrderLineOptionResponseModel>();
+                    var orderLineOptionResponseModels = new List<OrderDetailResponseModel.OrderLineResponseModel.OrderLineOptionResponseModel>();
                     foreach (var orderLineOption in orderLine.OrderLineOptions)
                     {
                         var foodCustomizationOption = foodCustomizationOptions.FirstOrDefault(x => x.Id == orderLineOption.FoodCustomizationOptionId);
-                        var orderLineOptionResponseModel = new OrderResponseModel.OrderLineResponseModel.OrderLineOptionResponseModel
+                        var orderLineOptionResponseModel = new OrderDetailResponseModel.OrderLineResponseModel.OrderLineOptionResponseModel
                         {
                             FoodCustomizationOptionId = orderLineOption.FoodCustomizationOptionId,
                             FoodCustomizationOptionName = foodCustomizationOption.Name,
@@ -158,7 +158,7 @@ namespace FoodApp.Domain.Services
                     }
 
                     var food = foods.FirstOrDefault(x => x.Id == orderLine.FoodId);
-                    var orderLineResponseModel = new OrderResponseModel.OrderLineResponseModel
+                    var orderLineResponseModel = new OrderDetailResponseModel.OrderLineResponseModel
                     {
                         FoodId = orderLine.FoodId,
                         FoodName = food.Name,
@@ -172,6 +172,20 @@ namespace FoodApp.Domain.Services
             }
 
             return orderResponseModel;
+        }
+
+        public async Task<List<OrderResponseModel>> GetOrders(Guid userId)
+        {
+            var orders = await this.foodAppDbContext.Orders.AsNoTracking().Include(x => x.Restaurant)
+                                    .Where(x => x.UserId == userId)
+                                    .Select(x => new OrderResponseModel
+                                    {
+                                        OrderId = x.Id,
+                                        RestaurantId = x.RestaurantId,
+                                        RestaurantName = x.Restaurant.Name,
+                                        TotalAmount = x.TotalAmount
+                                    }).ToListAsync();
+            return orders;
         }
     }
 }

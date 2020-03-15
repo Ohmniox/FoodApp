@@ -11,5 +11,6 @@ namespace FoodApp.Entities
         public Guid RestaurantId { get; set; }
         public decimal TotalAmount { get; set; }
         public virtual List<OrderLine> OrderLines { get; set; }
+        public virtual Restaurant Restaurant { get; set; }
     }
 }

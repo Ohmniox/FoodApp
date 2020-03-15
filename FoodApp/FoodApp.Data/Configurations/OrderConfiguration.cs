@@ -16,6 +16,7 @@ namespace FoodApp.Data.Configurations
             modelBuilder.Property(p => p.RestaurantId).IsRequired();
             modelBuilder.Property(p => p.UserId).IsRequired();
             modelBuilder.Property(p => p.TotalAmount).HasColumnType("decimal(7, 2)").IsRequired();
+            modelBuilder.HasOne(x => x.Restaurant).WithMany(x => x.Orders);
         }
     }
 }

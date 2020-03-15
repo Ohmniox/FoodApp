@@ -9,5 +9,6 @@ namespace FoodApp.Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public virtual List<RestaurantFoodCategoryMap> RestaurantFoodCategoryMaps { get; set; }
+        public virtual List<Order> Orders { get; set; }
     }
 }

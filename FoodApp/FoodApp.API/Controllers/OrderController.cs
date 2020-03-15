@@ -38,10 +38,17 @@ namespace FoodApp.API.Controllers
             return CreatedAtAction("GetOrder", new { id = orderId }, new { id = orderId });
         }
 
+        [HttpGet()]
+        public async Task<IActionResult> GetOrders()
+        {
+            var order = await orderService.GetOrders(this.RequestInfoModel.UserId);
+            return Ok(order);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrder([FromRoute(Name = "id")]Guid orderId)
         {
-            var order = await orderService.GetOrder(orderId);
+            var order = await orderService.GetOrder(orderId, this.RequestInfoModel.UserId);
             if (order == null)
             {
                 return this.NotFound();

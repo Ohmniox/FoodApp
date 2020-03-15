@@ -12,6 +12,7 @@ namespace FoodApp.Core.Services.Contracts
     public interface IOrderService : IService
     {
         Task<(BadRequestResponseModel, Guid)> CreateOrder(OrderRequestModel orderRequestModel, Guid userId);
-        Task<OrderResponseModel> GetOrder(Guid orderId);
+        Task<OrderDetailResponseModel> GetOrder(Guid orderId, Guid userId);
+        Task<List<OrderResponseModel>> GetOrders(Guid userId);
     }
 }
