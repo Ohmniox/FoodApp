@@ -13,11 +13,11 @@ namespace FoodApp.Core.Services.Contracts
         public Task<List<FoodResponseModel>> GetFoodsAsync();
         public Task<FoodResponseModel> GetFoodAsync(Guid foodId);
         public Task<Guid> CreateFoodAsync(FoodRequestModel foodRequestModel);
-        public Task UpdateFood(Guid foodId, FoodRequestModel foodRequestModel);
+        public Task UpdateFoodAsync(Guid foodId, FoodRequestModel foodRequestModel);
         
         public Task<List<FoodCategory>> GetFoodCategoriesForRestaurantAsync(Guid restaurantId);
         public Task<List<FoodDetailResponseModel>> GetFoodsByFoodCategoryIdAsync(Guid foodCategoryId);
 
-        public Task<FoodCategory> GetFoodCategory(Guid foodCategoryId);
+        public Task<FoodCategory> GetFoodCategoryAsync(Guid foodCategoryId);
     }
 }

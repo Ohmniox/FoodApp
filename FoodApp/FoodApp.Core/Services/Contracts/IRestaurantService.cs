@@ -9,5 +9,6 @@ namespace FoodApp.Core.Services.Contracts
     public interface IRestaurantService : IService
     {
         public Task<List<Restaurant>> GetRestaurantsAsync();
+        public Task<Restaurant> GetRestaurantAsync(Guid restaurantId);
     }
 }

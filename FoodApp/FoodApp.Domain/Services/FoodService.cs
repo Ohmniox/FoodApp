@@ -114,7 +114,7 @@ namespace FoodApp.Domain.Services
             return food.Id;
         }
 
-        public async Task UpdateFood(Guid foodId, FoodRequestModel foodRequestModel)
+        public async Task UpdateFoodAsync(Guid foodId, FoodRequestModel foodRequestModel)
         {
             var food = await foodAppDbContext.Foods.FirstOrDefaultAsync(x => x.Id == foodId);
             FoodMapper.Map(foodRequestModel, food);
@@ -122,7 +122,7 @@ namespace FoodApp.Domain.Services
             await foodAppDbContext.SaveChangesAsync();
         }
 
-        public Task<FoodCategory> GetFoodCategory(Guid foodCategoryId)
+        public Task<FoodCategory> GetFoodCategoryAsync(Guid foodCategoryId)
         {
             return foodAppDbContext.FoodCategories.AsNoTracking().FirstOrDefaultAsync(x => x.Id == foodCategoryId);
         }

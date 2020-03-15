@@ -23,7 +23,11 @@ namespace FoodApp.Domain.Services
 
         public Task<List<Restaurant>> GetRestaurantsAsync()
         {
-            return foodAppDbContext.Restaurants.ToListAsync();
+            return foodAppDbContext.Restaurants.AsNoTracking().ToListAsync();
+        }
+        public Task<Restaurant> GetRestaurantAsync(Guid restaurantId)
+        {
+            return foodAppDbContext.Restaurants.AsNoTracking().FirstOrDefaultAsync(x => x.Id == restaurantId);
         }
     }
 }
