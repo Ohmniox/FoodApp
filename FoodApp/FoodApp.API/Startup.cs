@@ -80,6 +80,7 @@ namespace FoodApp.API
             services.AddScoped<IRestaurantService, RestaurantService>();
             services.AddScoped<IFoodService, FoodService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IOrderService, OrderService>();
 
             services.AddSwaggerGen(c =>
             {
