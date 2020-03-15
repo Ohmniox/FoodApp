@@ -29,7 +29,9 @@ namespace FoodApp.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetRestaurants()
         {
+            logger.LogInformation("GetRestaurants request started");
             var restaurants = await restaurantService.GetRestaurantsAsync();
+            logger.LogInformation("GetRestaurants request completed successfully");
             return this.Ok(restaurants);
         }
 

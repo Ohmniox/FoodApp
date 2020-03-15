@@ -31,48 +31,60 @@ namespace FoodApp.API.Controllers.Admin
         [HttpGet]
         public async Task<IActionResult> GetFoods()
         {
+            logger.LogInformation("GetFoods request started");
             var foods = await this.foodService.GetFoodsAsync();
+            logger.LogInformation("GetFoods request completed successfully");
             return this.Ok(foods);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFood([FromRoute(Name = "id")]Guid foodId)
         {
+            logger.LogInformation("GetFood request started");
             var food = await this.foodService.GetFoodAsync(foodId);
             if (food == null)
             {
+                logger.LogWarning($"Food with id : {foodId} not found");
                 return this.NotFound();
             }
+            logger.LogInformation("GetFoodsrequest completed successfully");
             return this.Ok(food);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateFood([FromBody]FoodRequestModel foodRequestModel)
         {
-            var foodCategory = await this.foodService.GetFoodCategory(foodRequestModel.FoodCategoryId);
+            logger.LogInformation("CreateFood request started");
+            var foodCategory = await this.foodService.GetFoodCategoryAsync(foodRequestModel.FoodCategoryId);
             if (foodCategory == null)
             {
+                logger.LogWarning($"Invalid foodCateogoryId : {foodRequestModel.FoodCategoryId}");
                 return this.BadRequest(new BadRequestResponseModel { ErrorMessage = "Invalid foodCategoryId" });
             }
             var foodId = await this.foodService.CreateFoodAsync(foodRequestModel);
+            logger.LogInformation("CreateFood completed successfully");
             return CreatedAtAction("GetFood", new { id = foodId }, new { id = foodId });
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateFood([FromRoute(Name = "id")]Guid foodId, [FromBody] FoodRequestModel foodRequestModel)
         {
+            logger.LogInformation("UpdateFood request started");
             var food = await this.foodService.GetFoodAsync(foodId);
             if (food == null)
             {
+                logger.LogWarning($"Invalid foodId : {foodId}");
                 return this.BadRequest(new BadRequestResponseModel { ErrorMessage = "Invalid foodId" });
             }
 
-            var foodCategory = await this.foodService.GetFoodCategory(foodRequestModel.FoodCategoryId);
+            var foodCategory = await this.foodService.GetFoodCategoryAsync(foodRequestModel.FoodCategoryId);
             if (foodCategory == null)
             {
+                logger.LogWarning($"Invalid foodCateogoryId : {foodRequestModel.FoodCategoryId}");
                 return this.BadRequest(new BadRequestResponseModel { ErrorMessage = "Invalid foodCategoryId" });
             }
-            await this.foodService.UpdateFood(foodId, foodRequestModel);
+            await this.foodService.UpdateFoodAsync(foodId, foodRequestModel);
+            logger.LogInformation("UpdateFood completed successfully");
             return this.NoContent();
         }
     }

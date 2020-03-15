@@ -30,11 +30,14 @@ namespace FoodApp.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody]OrderRequestModel orderRequestModel)
         {
+            logger.LogInformation("CreateOrder request started");
             var (error, orderId) = await orderService.CreateOrder(orderRequestModel, this.RequestInfoModel.UserId);
             if (error != null)
             {
+                logger.LogWarning($"Invalid request : {error}");
                 return this.BadRequest(error);
             }
+            logger.LogInformation("CreateOrder request completed successfully");
             return CreatedAtAction("GetOrder", new { id = orderId }, new { id = orderId });
         }
 
@@ -48,11 +51,14 @@ namespace FoodApp.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrder([FromRoute(Name = "id")]Guid orderId)
         {
+            logger.LogInformation("GetOrder request started");
             var order = await orderService.GetOrder(orderId, this.RequestInfoModel.UserId);
             if (order == null)
             {
+                logger.LogWarning($"Order with id : {orderId} not found");
                 return this.NotFound();
             }
+            logger.LogInformation("GetOrder request completed successfully");
             return Ok(order);
         }
 

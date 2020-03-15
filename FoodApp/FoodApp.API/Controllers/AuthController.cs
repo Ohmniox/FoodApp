@@ -45,13 +45,13 @@ namespace FoodApp.API.Controllers
             var user = await userService.GetUser(acquireTokenRequestModel.Email);
             if (user == null)
             {
-                logger.LogInformation("User not found");
+                logger.LogWarning("User not found");
                 return BadRequest(new BadRequestResponseModel { ErrorMessage = "Email or Password invalid" });
             }
             var checkPassword = Helper.VerifyPassword(acquireTokenRequestModel.Password.ToString(), user.PasswordHash);
             if (!checkPassword)
             {
-                logger.LogInformation("Password is incorrect");
+                logger.LogWarning("Password is incorrect");
                 return BadRequest(new BadRequestResponseModel { ErrorMessage = "Email or Password invalid" });
             }
             var authToken = GenerateAuthenticationToken(user.Email, user.Id, user.UserType);
@@ -67,7 +67,7 @@ namespace FoodApp.API.Controllers
             var user = await userService.GetUser(userRequestModel.Email);
             if (user != null)
             {
-                logger.LogInformation($"User already exist with the email : {userRequestModel.Email}");
+                logger.LogWarning($"User already exist with the email : {userRequestModel.Email}");
                 return BadRequest(new BadRequestResponseModel { ErrorMessage = "User already exist with the given email id" });
             }
 
