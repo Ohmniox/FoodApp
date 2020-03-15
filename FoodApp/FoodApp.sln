@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodApp.Domain", "FoodApp.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodApp.Core", "FoodApp.Core\FoodApp.Core.csproj", "{44A7491C-9726-4CB7-8515-5DCBCBE05953}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Models", "FoodApp.Models\FoodApp.Models.csproj", "{5C318136-0ADC-408A-8070-ACC4265B54FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodApp.Models", "FoodApp.Models\FoodApp.Models.csproj", "{5C318136-0ADC-408A-8070-ACC4265B54FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Library", "FoodApp.Library\FoodApp.Library.csproj", "{03D78BBC-8934-4A67-935B-BAA2BF7B19D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodApp.Library", "FoodApp.Library\FoodApp.Library.csproj", "{03D78BBC-8934-4A67-935B-BAA2BF7B19D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodApp.Middleware", "FoodApp.Middleware\FoodApp.Middleware.csproj", "{B570E9A7-CE20-4912-8248-1EF5A869AA9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{03D78BBC-8934-4A67-935B-BAA2BF7B19D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03D78BBC-8934-4A67-935B-BAA2BF7B19D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03D78BBC-8934-4A67-935B-BAA2BF7B19D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B570E9A7-CE20-4912-8248-1EF5A869AA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B570E9A7-CE20-4912-8248-1EF5A869AA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B570E9A7-CE20-4912-8248-1EF5A869AA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B570E9A7-CE20-4912-8248-1EF5A869AA9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

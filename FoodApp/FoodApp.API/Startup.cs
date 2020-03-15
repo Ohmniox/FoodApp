@@ -22,6 +22,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using FoodApp.Middleware.Extension;
 
 namespace FoodApp.API
 {
@@ -89,12 +90,10 @@ namespace FoodApp.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            var isDevelopmentEnvironment = env.IsDevelopment();
+            app.UseCustomExceptionHandler(isDevelopmentEnvironment, loggerFactory);
 
             app.UseHttpsRedirection();
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());

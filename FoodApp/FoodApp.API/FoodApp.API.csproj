@@ -22,6 +22,7 @@
     <ProjectReference Include="..\FoodApp.Core\FoodApp.Core.csproj" />
     <ProjectReference Include="..\FoodApp.Data\FoodApp.Data.csproj" />
     <ProjectReference Include="..\FoodApp.Domain\FoodApp.Domain.csproj" />
+    <ProjectReference Include="..\FoodApp.Middleware\FoodApp.Middleware.csproj" />
   </ItemGroup>
 
 
