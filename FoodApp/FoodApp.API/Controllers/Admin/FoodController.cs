@@ -22,12 +22,21 @@ namespace FoodApp.API.Controllers.Admin
         private readonly IFoodService foodService;
         private readonly ILogger<FoodController> logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FoodController"/> class.
+        /// </summary>
+        /// <param name="foodService">The food service.</param>
+        /// <param name="logger">The logger.</param>
         public FoodController(IFoodService foodService, ILogger<FoodController> logger)
         {
             this.foodService = foodService;
             this.logger = logger;
         }
 
+        /// <summary>
+        /// Gets the foods.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetFoods()
         {
@@ -37,6 +46,11 @@ namespace FoodApp.API.Controllers.Admin
             return this.Ok(foods);
         }
 
+        /// <summary>
+        /// Gets the food by id.
+        /// </summary>
+        /// <param name="foodId">The food identifier.</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFood([FromRoute(Name = "id")]Guid foodId)
         {
@@ -51,6 +65,11 @@ namespace FoodApp.API.Controllers.Admin
             return this.Ok(food);
         }
 
+        /// <summary>
+        /// Creates the food.
+        /// </summary>
+        /// <param name="foodRequestModel">The food request model.</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateFood([FromBody]FoodRequestModel foodRequestModel)
         {
@@ -66,6 +85,12 @@ namespace FoodApp.API.Controllers.Admin
             return CreatedAtAction("GetFood", new { id = foodId }, new { id = foodId });
         }
 
+        /// <summary>
+        /// Updates the food.
+        /// </summary>
+        /// <param name="foodId">The food identifier.</param>
+        /// <param name="foodRequestModel">The food request model.</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateFood([FromRoute(Name = "id")]Guid foodId, [FromBody] FoodRequestModel foodRequestModel)
         {

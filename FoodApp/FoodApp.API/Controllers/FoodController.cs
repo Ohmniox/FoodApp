@@ -22,6 +22,12 @@ namespace FoodApp.API.Controllers
         private readonly IRestaurantService restaurantService;
         private readonly ILogger<FoodController> logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FoodController"/> class.
+        /// </summary>
+        /// <param name="foodService">The food service.</param>
+        /// <param name="restaurantService">The restaurant service.</param>
+        /// <param name="logger">The logger.</param>
         public FoodController(IFoodService foodService, IRestaurantService restaurantService, ILogger<FoodController> logger)
         {
             this.foodService = foodService;
@@ -29,6 +35,11 @@ namespace FoodApp.API.Controllers
             this.logger = logger;
         }
 
+        /// <summary>
+        /// Gets the food categories for restaurant.
+        /// </summary>
+        /// <param name="restaurantId">The restaurant identifier.</param>
+        /// <returns></returns>
         [HttpGet("food-categories")]
         public async Task<IActionResult> GetFoodCategoriesForRestaurant([FromQuery]Guid restaurantId)
         {
@@ -45,7 +56,11 @@ namespace FoodApp.API.Controllers
             return this.Ok(foodCategoryList);
         }
 
-
+        /// <summary>
+        /// Gets the food by food category.
+        /// </summary>
+        /// <param name="foodCategoryId">The food category identifier.</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetFoodByFoodCategory([FromQuery]Guid foodCategoryId)
         {

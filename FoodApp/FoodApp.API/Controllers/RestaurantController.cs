@@ -20,12 +20,21 @@ namespace FoodApp.API.Controllers
         private readonly IRestaurantService restaurantService;
         private readonly ILogger<RestaurantController> logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RestaurantController"/> class.
+        /// </summary>
+        /// <param name="restaurantService">The restaurant service.</param>
+        /// <param name="logger">The logger.</param>
         public RestaurantController(IRestaurantService restaurantService, ILogger<RestaurantController> logger)
         {
             this.restaurantService = restaurantService;
             this.logger = logger;
         }
 
+        /// <summary>
+        /// Gets the restaurants.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetRestaurants()
         {

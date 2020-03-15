@@ -21,12 +21,22 @@ namespace FoodApp.API.Controllers
         private readonly IOrderService orderService;
         private readonly ILogger<OrderController> logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrderController"/> class.
+        /// </summary>
+        /// <param name="orderService">The order service.</param>
+        /// <param name="logger">The logger.</param>
         public OrderController(IOrderService orderService, ILogger<OrderController> logger)
         {
             this.orderService = orderService;
             this.logger = logger;
         }
 
+        /// <summary>
+        /// Creates the order.
+        /// </summary>
+        /// <param name="orderRequestModel">The order request model.</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody]OrderRequestModel orderRequestModel)
         {
@@ -41,13 +51,22 @@ namespace FoodApp.API.Controllers
             return CreatedAtAction("GetOrder", new { id = orderId }, new { id = orderId });
         }
 
-        [HttpGet()]
+        /// <summary>
+        /// Gets the orders for logged in user.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public async Task<IActionResult> GetOrders()
         {
             var order = await orderService.GetOrders(this.RequestInfoModel.UserId);
             return Ok(order);
         }
 
+        /// <summary>
+        /// Gets the order by id.
+        /// </summary>
+        /// <param name="orderId">The order identifier.</param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrder([FromRoute(Name = "id")]Guid orderId)
         {

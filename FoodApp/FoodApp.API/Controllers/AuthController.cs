@@ -30,6 +30,12 @@ namespace FoodApp.API.Controllers
         private readonly ConfigSettings settings;
         private readonly ILogger<AuthController> logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthController"/> class.
+        /// </summary>
+        /// <param name="userService">The user service.</param>
+        /// <param name="settings">The settings.</param>
+        /// <param name="logger">The logger.</param>
         public AuthController(IUserService userService, ConfigSettings settings, ILogger<AuthController> logger)
         {
             this.userService = userService;
@@ -37,6 +43,11 @@ namespace FoodApp.API.Controllers
             this.logger = logger;
         }
 
+        /// <summary>
+        /// Acquires the token.
+        /// </summary>
+        /// <param name="acquireTokenRequestModel">The acquire token request model.</param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("acquire-token")]
         public async Task<IActionResult> AcquireToken([FromBody] AcquireTokenRequestModel acquireTokenRequestModel)
@@ -59,6 +70,11 @@ namespace FoodApp.API.Controllers
             return this.Ok(new AcquireTokenResponseModel { Token = authToken });
         }
 
+        /// <summary>
+        /// Signs up.
+        /// </summary>
+        /// <param name="userRequestModel">The user request model.</param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("sign-up")]
         public async Task<IActionResult> SignUp([FromBody]UserRequestModel userRequestModel)
@@ -76,6 +92,13 @@ namespace FoodApp.API.Controllers
             return this.Accepted();
         }
 
+        /// <summary>
+        /// Generates the authentication token.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="userID">The user identifier.</param>
+        /// <param name="userType">Type of the user.</param>
+        /// <returns></returns>
         private string GenerateAuthenticationToken(string email, Guid userID, int userType)
         {
             var signingKeyByteArray = Encoding.Default.GetBytes(settings.SigningKey);
